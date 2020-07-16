@@ -90,18 +90,24 @@ def send_email(request):
 
 
 def check_mychecklist(request):
-    if request.method == 'POST':
+    try:
+        if request.method == 'POST':
 
-        # for i in Newsletter.objects.filter(status=1):
-        #     x = request.POST.get(str(i.pk))
-        #     print(x)
-        #     if str(x) == 'on':
-        #         b= Newsletter.objects.get(pk=i.pk)
-        #         b.delete()
+            # for i in Newsletter.objects.filter(status=1):
+            #     x = request.POST.get(str(i.pk))
+            #     print(x)
+            #     if str(x) == 'on':
+            #         b= Newsletter.objects.get(pk=i.pk)
+            #         b.delete()
 
-        check = request.POST.getlist('checks[]')
-        print(check)
-        for i in check:
-            b = Newsletter.objects.get(pk=i).txt
-            b.delete()
+            check = request.POST.getlist('checks[]')
+            
+            print(check)
+            for i in check:
+                b = Newsletter.objects.get(pk=i).txt
+                b.delete()
+    except:
+        error = "You don't Delete"
+        return render(request, 'back/error.html', {'error': error})
+
     return redirect('news_emails')

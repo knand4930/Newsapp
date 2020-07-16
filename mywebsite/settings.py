@@ -11,7 +11,7 @@ https://docs.djangoproject.com/en/3.0/ref/settings/
 """
 
 import os
-
+import smtplib
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
@@ -39,6 +39,9 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'jquery',
+    'dajaxice',
+    'dajax',
     'main',
     'news',
     'cat',
@@ -136,22 +139,25 @@ STATIC_ROOT = os.path.join(BASE_DIR, 'static')
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
+DAJAXICE_MEDIA_PREFIX = 'dajaxice'
+
 CRONJOBS = [
 
     ('*/5 * * * *', 'main.cron.my_job')
 ]
-'''
-EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBacked'
+
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 EMAIL_USE_TLS = True
-EMAIL_HOST = 'smtp.google.com'
+EMAIL_HOST = 'smtp.gmail.com'
 EMAIL_HOST_USER = 'nandkishorekapsiyawan123@gmail.com'
 EMAIL_HOST_PASSWORD ='nandkishore@123'
 EMAIL_PORT = 587
+
 '''
 if not DEBUG:
-    EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBacked'
+    EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
     EMAIL_USE_TLS = True
-    EMAIL_HOST = 'smtp.google.com'
+    EMAIL_HOST = 'smtp.gmail.com'
     EMAIL_HOST_USER = 'nandkishorekapsiyawan123@gmail.com'
     EMAIL_HOST_PASSWORD = 'nandkishore@123'
     EMAIL_PORT = 587
@@ -160,6 +166,7 @@ else:
     EMAIL_BACKEND = (
         "django.core.mail.backends.console.EmailBackend"
     )
+'''
 
 # SSL Certifications
 

@@ -35,7 +35,6 @@ sitemaps = {
 urlpatterns = [
     url('admin/', admin.site.urls),
 
-    url('account/', include('django.contrib.auth.urls')),
 
     url(r'rest/', include(router.urls)),
     url(r'api-auth/', include('rest_framework.urls', namespace='rest_framework')),
@@ -44,6 +43,7 @@ urlpatterns = [
 
     url(r'^media/(?P<path>.*)$', serve, {'document_root': settings.MEDIA_ROOT}),
     url(r'^static/(?P<path>.*)', serve, {'document_root': settings.STATIC_ROOT}),
+
 
     url(r'', include('main.urls')),
     url(r'', include('news.urls')),
@@ -60,3 +60,5 @@ urlpatterns = [
 if settings.DEBUG:
     urlpatterns += static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
     urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+    
+	

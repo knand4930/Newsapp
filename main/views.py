@@ -25,12 +25,14 @@ from bs4 import BeautifulSoup
 import urllib.request as urllib2
 from rest_framework import viewsets
 from .serializer import NewsSerializer
-from django.http import JsonResponse
 from newsletter.models import Newsletter
+from django.http import HttpResponse, HttpResponseRedirect, JsonResponse
+from email.message import EmailMessage
+import smtplib
+from django.conf import settings
 
 
 # Create your views here.
-
 @csrf_exempt
 def home(request):
     site = Main.objects.get(pk=1)
@@ -418,14 +420,7 @@ def answer_cm(request, pk):
         emails = [to_email]
         send_mail(subjects, message, email_from, emails)
 
-        '''
-        send_mail(
-            'sender number2',
-            txt,
-            'nandkishorekapsiyawan123@gmail.com',
-            ['knand4930@gmail.com'],
-            fail_silently=False
-        )'''
+        
 
     return render(request, 'back/answer_cm.html', {'pk': pk})
 
@@ -440,3 +435,5 @@ def show_data(request):
 
     data = {'count': count}
     return JsonResponse(data)
+
+
