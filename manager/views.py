@@ -273,17 +273,22 @@ def users_perms(request, pk):
         error = "Access Denied "
         return render(request, 'back/error.html', {'error': error})
 
-    manager = Manager.objects.get(pk=pk)
+    try:
+        manager = Manager.objects.get(pk=pk)
 
-    user = User.objects.get(username=manager.utxt)
+        user = User.objects.get(username=manager.utxt)
 
-    permission = Permission.objects.filter(user=user)
+        permission = Permission.objects.filter(user=user)
 
-    uperms = []
-    for i in permission:
-        uperms.append(i.name)
+        uperms = []
+        for i in permission:
+            uperms.append(i.name)
 
-    perms = Permission.objects.all()
+        perms = Permission.objects.all()
+    except:
+        error = "Something went wrong !!! work on this page "
+        return render(request, 'back/error.html', {'error': error})
+
 
     return render(request, 'back/users_perms.html', {'uperms': uperms, 'pk': pk, 'perms': perms})
 

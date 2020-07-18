@@ -12,6 +12,7 @@ https://docs.djangoproject.com/en/3.0/ref/settings/
 
 import os
 import smtplib
+
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
@@ -28,7 +29,6 @@ ALLOWED_HOSTS = []
 
 if DEBUG:
     EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
-
 
 # Application definition
 
@@ -58,7 +58,6 @@ INSTALLED_APPS = [
     'django.contrib.sitemaps',
     'rest_framework',
 ]
-
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
@@ -150,7 +149,7 @@ EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 EMAIL_USE_TLS = True
 EMAIL_HOST = 'smtp.gmail.com'
 EMAIL_HOST_USER = 'nandkishorekapsiyawan123@gmail.com'
-EMAIL_HOST_PASSWORD ='nandkishore@123'
+EMAIL_HOST_PASSWORD = 'nandkishore@123'
 EMAIL_PORT = 587
 
 '''
@@ -177,14 +176,11 @@ SECRET_HSTS_PRELOAD = True
 CSRF_COOKIE_SECURE = True
 CSRF_COOKIE_SAMESITE = 'Strict'
 SESSION_COOKIE_SECURE = True
-SECURE_BROWSER_XSS_FILTER =True
+SECURE_BROWSER_XSS_FILTER = True
 SECRET_CONTENT_TYPE_NOSNIFF = True
 SECRET_SSL_REDIRECT = True
 X_FRAME_OPTIONS = 'DENY'
 
 SESSION_COOKIE_AGE = 3600
 SESSION_SAVE_EVERY_REQUEST = True
-
-
-
 

@@ -1,5 +1,11 @@
 {%extends 'front/loginmaster.html' %}
 {%load static%}
+
+{% block titleblock %}
+
+<title>Forget Your Password</title>
+
+{%endblock%}
 {%block mainblock%}
 
 <!-- Login Alternative Row -->
@@ -16,21 +22,14 @@
 
                         <!-- Key Features -->
                         <ul class="fa-ul text-muted">
-                            <li><i class="fa fa-check fa-li text-success"></i> Clean &amp; Modern Design</li>
-                            <li><i class="fa fa-check fa-li text-success"></i> Fully Responsive &amp; Retina Ready</li>
-                            <li><i class="fa fa-check fa-li text-success"></i> 10 Color Themes</li>
-                            <li><i class="fa fa-check fa-li text-success"></i> PSD Files Included</li>
-                            <li><i class="fa fa-check fa-li text-success"></i> Widgets Collection</li>
-                            <li><i class="fa fa-check fa-li text-success"></i> Designed Pages Collection</li>
-                            <li><i class="fa fa-check fa-li text-success"></i> .. and many more awesome features!</li>
+                            <li><i class="fa fa-check fa-li text-success"></i> <a href="/about/" >About Us</a></li>
+                            <li><i class="fa fa-check fa-li text-success"></i><a href="/"> Home Page</a></li>
+                            <li><i class="fa fa-check fa-li text-success"></i><a href="/top/news/all/"> Full News</a></li>
+                            
                         </ul>
                         <!-- END Key Features -->
 
-                        <!-- Footer -->
-                        <footer class="text-muted push-top-bottom">
-                            <small><span id="year-copy"></span> &copy; <a href="#" target="_blank">ProUI 3.8</a></small>
-                        </footer>
-                        <!-- END Footer -->
+                        
                     </div>
                 </div>
                 <div class="col-md-5">
@@ -48,7 +47,7 @@
                             
                             <div id="result"></div>                            
                             <form  method="post" id="form-login" class="form-horizontal">
-                                {%csrf_token%}
+                                {% csrf_token %}
                                 <div class="form-group form-actions">
                                 <div class="form-group">
                                     <div class="col-xs-12">

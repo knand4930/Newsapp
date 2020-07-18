@@ -52,18 +52,18 @@
 					<div class="p-r-10 p-r-0-sr991">
 						<form action="{%url 'contact_add' %}" method="post">
 							 {% csrf_token %}
-							<span>Required</span>
+							<span>Name (Required)</span>
 							<input class="bo-1-rad-3 bocl13 size-a-19 f1-s-13 cl5 plh6 p-rl-18 m-b-20" type="text" id="name" name="name" placeholder="Name*" required>
 
 
-							<span>Required</span>
+							<span>Email (Required)</span>
 							<input class="bo-1-rad-3 bocl13 size-a-19 f1-s-13 cl5 plh6 p-rl-18 m-b-20" type="text" id="email" name="email" placeholder="Email*" required>
 
-							<span>Not Required</span>
+							<span>Website (Optional)</span>
 							<input class="bo-1-rad-3 bocl13 size-a-19 f1-s-13 cl5 plh6 p-rl-18 m-b-20" type="website" id="website" name="website" placeholder="website">
 
 
-							<span>Required</span>
+							<span>Message (Required)</span>
 							<textarea class="bo-1-rad-3 bocl13 size-a-15 f1-s-13 cl5 plh6 p-rl-18 p-tb-14 m-b-20" id="msg" name="msg" placeholder="Your Message" required></textarea>
 
 

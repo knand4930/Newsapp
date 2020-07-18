@@ -30,6 +30,7 @@ from django.http import HttpResponse, HttpResponseRedirect, JsonResponse
 from email.message import EmailMessage
 import smtplib
 from django.conf import settings
+from google.cloud import translate
 
 
 # Create your views here.
@@ -273,7 +274,7 @@ def site_setting(request):
 
             myfile2 = request.FILES['myfile2']
             fs2 = FileSystemStorage()
-            filename2 = fs2.save(myfile2.name, myfile)
+            filename2 = fs2.save(myfile2.name, myfile2)
             url = fs2.url(filename2)
 
             picurl2 = url2
@@ -404,6 +405,31 @@ def change_pass(request):
     return render(request, 'back/changepass.html', {})
 
 
+def change_admin(request):
+    # login check start
+    if not request.user.is_authenticated:
+        return redirect('mylogin')
+    # login check end
+    try:
+        if request.method == 'POST':
+            oldadmin = request.POST.get('oldadmin')
+            newadmin = request.POST.get('newadmin')
+            try:
+                user = User.objects.get(username=oldadmin)
+                user.username = newadmin
+                user.save()
+                return redirect('mylogout')
+            except:
+                error = "Please Input Correct Username"
+                return render(request, 'back/error.html', {'error': error})
+
+    except:
+        error = "This User Name is Already"
+        return render(request, 'back/error.html', {'error': error})
+
+    return render(request, 'back/changeadmin.html', {})
+
+
 def answer_cm(request, pk):
     if request.method == 'POST':
         txt = request.POST.get('txt')
@@ -420,8 +446,6 @@ def answer_cm(request, pk):
         emails = [to_email]
         send_mail(subjects, message, email_from, emails)
 
-        
-
     return render(request, 'back/answer_cm.html', {'pk': pk})
 
 
@@ -437,3 +461,120 @@ def show_data(request):
     return JsonResponse(data)
 
 
+def latest_article(request):
+    site = Main.objects.get(pk=1)
+    news = News.objects.filter(act=1).order_by('-pk')
+    cat = Cat.objects.all()
+    subcat = SubCat.objects.all()
+    lastnews = News.objects.filter(act=1).order_by('-pk')
+    popnews = News.objects.filter(act=1).order_by('-show')
+    popnews2 = News.objects.filter(act=1).order_by('-show')
+    trending = Trending.objects.all().order_by('-pk')
+    lastnews2 = News.objects.filter(act=1).order_by('-pk')[:50]
+
+    return render(request, 'back/latest_article.html',
+                  {'site': site, 'news': news, 'cat': cat, 'subcat': subcat, 'lastnews': lastnews, 'popnews': popnews,
+                   'popnews2': popnews2, 'trending': trending, 'lastnews2': lastnews2})
+
+
+def popular_article(request):
+    site = Main.objects.get(pk=1)
+    news = News.objects.filter(act=1).order_by('-pk')
+    cat = Cat.objects.all()
+    subcat = SubCat.objects.all()
+    lastnews = News.objects.filter(act=1).order_by('-pk')
+    popnews = News.objects.filter(act=1).order_by('-show')[:50]
+    popnews2 = News.objects.filter(act=1).order_by('-show')
+    trending = Trending.objects.all().order_by('-pk')
+    lastnews2 = News.objects.filter(act=1).order_by('-pk')
+
+    return render(request, 'back/popular_article.html',
+                  {'site': site, 'news': news, 'cat': cat, 'subcat': subcat, 'lastnews': lastnews, 'popnews': popnews,
+                   'popnews2': popnews2, 'trending': trending, 'lastnews2': lastnews2, })
+
+
+def users_profiles(request):
+    # login check start
+    if not request.user.is_authenticated:
+        return redirect('mylogin')
+    # login check end
+
+    prem = 0
+    for i in request.user.groups.all():
+        if i.name == 'masteruser': prem = 1
+
+    if prem == 0:
+        error = "Access Denied "
+        return render(request, 'back/error.html', {'error': error})
+
+    if request.method == 'POST':
+        name = request.POST.get('name')
+
+
+        try:
+
+            myfile = request.FILES['myfile']
+            fs = FileSystemStorage()
+            filename = fs.save(myfile.name, myfile)
+            url = fs.url(filename)
+
+            picurl = url
+            picname = filename
+
+        except:
+
+            picurl = "-"
+            picname = "-"
+
+        try:
+
+            myfile2 = request.FILES['myfile2']
+            fs2 = FileSystemStorage()
+            filename2 = fs2.save(myfile2.name, myfile2)
+            url = fs2.url(filename2)
+
+            picurl2 = url2
+            picname2 = filename2
+
+        except:
+
+            picurl2 = "-"
+            picname2 = "-"
+
+        try:
+
+            myfile3 = request.FILES['myfile3']
+            fs3 = FileSystemStorage()
+            filename3 = fs3.save(myfile3.name, myfile3)
+            url = fs3.url(filename3)
+
+            picurl3 = url3
+            picname3 = filename3
+
+        except:
+
+            picurl3 = "-"
+            picname3 = "-"
+
+        b = Main.objects.get(pk=1)
+
+        if picurl != "-":
+            b.picname = picurl
+        if picname != "-":
+            b.picname = picname
+
+        if picurl2 != "-":
+            b.picname = picurl2
+        if picname2 != "":
+            b.picname = picname2
+
+        if picurl3 != "-":
+            b.picname = picurl3
+        if picname3 != "":
+            b.picname = picname3
+
+        b.save()
+
+    site = Main.objects.get(pk=1)
+
+    return render(request, 'back/user_profile.html',{'site':site})

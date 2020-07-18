@@ -1,5 +1,11 @@
 {%extends 'front/loginmaster.html' %}
 {%load static%}
+{% block titleblock %}
+
+<title>Your Forget Password Confirmed</title>
+{%endblock%}
+
+
 {%block mainblock%}
 
 <!-- Login Alternative Row -->
@@ -14,11 +20,6 @@
                         </h1>
                         <!-- END Title -->
 
-                        <!-- Footer -->
-                        <footer class="text-muted push-top-bottom">
-                            <small><span id="year-copy"></span> &copy; <a href="#" target="_blank">ProUI 3.8</a></small>
-                        </footer>
-                        <!-- END Footer -->
                     </div>
                 </div>
                 <div class="col-md-5">
@@ -39,7 +40,7 @@
                                 <div class="form-group">
                                     <div class="col-xs-12">
                                         <div class="input-group">
-                                            <span class="input-group-addon"><i class="gi gi-envelope"></i></span>
+                                            <span class="input-group-addon"><i class="gi gi-asterisk"></i></span>
                                             
                                             {{form}}
                                         </div>

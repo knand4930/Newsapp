@@ -20,11 +20,15 @@ class Main(models.Model):
     set_name = models.CharField(default="-", max_length=50)
     seo_txt = models.CharField(default="-", max_length=200)
     seo_keyword = models.TextField(default="-")
-    picurl = models.TextField(default="")
-    picname = models.TextField(default="")
+    picurl = models.TextField()
+    picname = models.TextField()
 
-    picurl2 = models.TextField(default="")
-    picname2 = models.TextField(default="")
+    picurl2 = models.TextField()
+    picname2 = models.TextField()
+
+    picurl3 = models.TextField(default="-")
+    picname3 = models.TextField(default="-")
 
     def __str__(self):
         return self.set_name + "|" + str(self.pk)
+
