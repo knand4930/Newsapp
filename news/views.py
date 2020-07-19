@@ -10,6 +10,11 @@ import random
 from comment.models import Comment
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from itertools import chain
+import speech_recognition as sr
+import pyttsx3
+import wolframalpha
+import wikipedia
+import webbrowser
 
 # Create your views here.
 mysearch = ""
@@ -639,11 +644,31 @@ def all_news_search(request):
     except:
         msg = "You don't Search This field"
         return render(request, 'front/msgbox.html', {'msg': msg})
-        
+
     return render(request, 'front/all_news_2.html',
                   {'site': site, 'news': news, 'cat': cat, 'subcat': subcat, 'lastnews': lastnews, 'popnews': popnews,
                    'popnews2': popnews2, 'trending': trending, 'lastnews2': lastnews2, 'allnewss': allnewss,
                    'f_rom': f_rom, 't_o': t_o})
 
+
+def bot_search(request):
+    query = request.GET.get('query')
+
+    try:
+        client = wolframalpha.Client("KA2W5A-VV99TYYW8K")
+        res = client.query(query)
+        ans = next(res.results).text
+        return render(request, 'back/bot_search.html', {'ans': ans, 'query': query})
+
+
+    except Exception:
+        try:
+            ans = wikipedia.summary(query, sentences=10000)
+            return render(request, 'back/bot_search.html', {'ans': ans, 'query': query})
+
+
+        except Exception:
+            ans = "Please Your Search Query"
+            return render(request, 'back/bot_search.html', {'ans': ans, 'query': query})
 
 # News.objects.filter(pk=pk).exclude(date__gte="2020/01/01")

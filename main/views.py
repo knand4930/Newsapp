@@ -30,7 +30,7 @@ from django.http import HttpResponse, HttpResponseRedirect, JsonResponse
 from email.message import EmailMessage
 import smtplib
 from django.conf import settings
-from google.cloud import translate
+
 
 
 # Create your views here.
@@ -578,3 +578,5 @@ def users_profiles(request):
     site = Main.objects.get(pk=1)
 
     return render(request, 'back/user_profile.html',{'site':site})
+
+

@@ -12,6 +12,7 @@ urlpatterns = [
     url(r'^all/news/(?P<word>.*)/$', views.news_all_show, name='news_all_show'),
     url(r'^top/news/all/$', views.all_news, name='all_news'),
     url(r'^search/$', views.all_news_search, name='all_news_search'),
-    
+    url(r'^panel/advanced/search/$', views.bot_search, name='bot_search'),
+
 ]
 
