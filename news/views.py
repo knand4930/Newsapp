@@ -663,7 +663,7 @@ def bot_search(request):
 
     except Exception:
         try:
-            ans = wikipedia.summary(query, sentences=10000)
+            ans = wikipedia.summary(query, sentences=39000)
             return render(request, 'back/bot_search.html', {'ans': ans, 'query': query})
 
 
