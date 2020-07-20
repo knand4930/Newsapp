@@ -10,6 +10,7 @@ For the full list of settings and their values, see
 https://docs.djangoproject.com/en/3.0/ref/settings/
 """
 
+import django_heroku
 
 import os
 import smtplib
@@ -184,3 +185,7 @@ X_FRAME_OPTIONS = 'DENY'
 
 SESSION_COOKIE_AGE = 3600
 SESSION_SAVE_EVERY_REQUEST = True
+
+
+# Activate Django-Heroku.
+django_heroku.settings(locals())
