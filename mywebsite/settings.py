@@ -13,7 +13,16 @@ https://docs.djangoproject.com/en/3.0/ref/settings/
 
 import os
 import smtplib
-
+import time
+from selenium import webdriver
+import codecs
+import sys
+import reload
+import re
+import fcntl
+import os
+import signal
+import fcntl
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
