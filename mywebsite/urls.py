@@ -55,6 +55,9 @@ urlpatterns = [
     url(r'', include('newsletter.urls')),
     url(r'', include('comment.urls')),
     url(r'', include('blacklist.urls')),
+
+    url(r'^media/(?P<path>.*)$', serve,{'document_root':settings.MEDIA_ROOT}), 
+    url(r'^static/(?P<path>.*)$', serve,{'document_root':settings.STATIC_ROOT}), 
 ]
 
 if settings.DEBUG:

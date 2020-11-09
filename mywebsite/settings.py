@@ -13,16 +13,16 @@ https://docs.djangoproject.com/en/3.0/ref/settings/
 
 import os
 import smtplib
-import time
-from selenium import webdriver
-import codecs
-import sys
-import reload
-import re
-import fcntl
-import os
-import signal
-import fcntl
+# import time
+# from selenium import webdriver
+# import codecs
+# import sys
+# import reload
+# import re
+# import fcntl
+# import os
+# import signal
+# import fcntl
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
@@ -33,9 +33,9 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SECRET_KEY = 's00-qkf4)mp=&+u@r-1br#d&j0xoad@phetex#987#x71utqor'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['127.0.0.1']
 
 if DEBUG:
     EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
@@ -70,6 +70,7 @@ INSTALLED_APPS = [
 ]
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
+    'whitenoise.middleware.WhiteNoiseMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
@@ -179,18 +180,18 @@ else:
 
 # SSL Certifications
 
-SECURE_HSTS_SECONDS = 300
-SECURE_HSTS_INCLUDE_SUBDOMAINS = True
-SECRET_HSTS_PRELOAD = True
+# SECURE_HSTS_SECONDS = 300
+# SECURE_HSTS_INCLUDE_SUBDOMAINS = True
+# SECRET_HSTS_PRELOAD = True
 
-CSRF_COOKIE_SECURE = True
-CSRF_COOKIE_SAMESITE = 'Strict'
-SESSION_COOKIE_SECURE = True
-SECURE_BROWSER_XSS_FILTER = True
-SECRET_CONTENT_TYPE_NOSNIFF = True
-SECRET_SSL_REDIRECT = True
-X_FRAME_OPTIONS = 'DENY'
+# CSRF_COOKIE_SECURE = True
+# CSRF_COOKIE_SAMESITE = 'Strict'
+# SESSION_COOKIE_SECURE = True
+# SECURE_BROWSER_XSS_FILTER = True
+# SECRET_CONTENT_TYPE_NOSNIFF = True
+# SECRET_SSL_REDIRECT = True
+# X_FRAME_OPTIONS = 'DENY'
 
-SESSION_COOKIE_AGE = 3600
-SESSION_SAVE_EVERY_REQUEST = True
+# SESSION_COOKIE_AGE = 3600
+# SESSION_SAVE_EVERY_REQUEST = True
 
