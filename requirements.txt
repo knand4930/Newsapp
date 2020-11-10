@@ -55,7 +55,6 @@ heroku==0.1.4
 hiredis==1.1.0
 hyperlink==20.0.1
 idna==2.10
-importlib
 incremental==17.5.0
 inflect==4.1.0
 instapy==0.6.11
