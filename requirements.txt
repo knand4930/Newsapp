@@ -11,7 +11,7 @@ autopep8==1.5.4
 beautifulsoup4==4.9.3
 bleach==3.2.1
 cached-property==1.5.2
-certifi==2020.6.20
+certifi==2022.12.7
 cffi
 channels==2.4.0
 channels-irc==0.6.0
